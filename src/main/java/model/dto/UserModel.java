@@ -14,7 +14,7 @@ public class UserModel {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "email")
+    @Column(unique = true)
     private String email;
 
     @Column(name = "password")

@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "movie")
+@Table(name = "movie", uniqueConstraints={@UniqueConstraint(columnNames={"name"})})
 public class MovieModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "name")
+    @Column(name ="name")
     private String name;
 
     @Column(name = "year")
@@ -38,7 +38,7 @@ public class MovieModel {
     @OneToMany(mappedBy = "movie",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
-    private List<ActorMovieModel> actors = new ArrayList<>();
+    private List<ActorMovieModel> movies = new ArrayList<>();
 
     public MovieModel(String name, int year, String genre, Duration duration) {
         this.name = name;
@@ -117,7 +117,8 @@ public class MovieModel {
     @Override
     public String toString() {
         return "MovieModel{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", year=" + year +
                 ", genre='" + genre + '\'' +
                 ", duration=" + duration +

@@ -17,8 +17,17 @@ public class ActorMovieModel {
     private MovieModel movie;
 
 
+    public ActorMovieModel(ActorModel actor, MovieModel movie) {
+        this.actor = actor;
+        this.movie = movie;
+    }
 
-
-
-
+    @Override
+    public String toString() {
+        return "ActorMovieModel{" +
+                "id=" + id +
+                ", actor=" + actor +
+                ", movie=" + movie +
+                '}';
+    }
 }

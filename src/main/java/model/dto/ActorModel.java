@@ -1,40 +1,42 @@
 package model.dto;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "actor")
+@Table(name = "actor", uniqueConstraints={@UniqueConstraint(columnNames={"name"})})
 public class ActorModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "name")
+    @Column(name="name")
     private String name;
 
     @Column(name = "country")
     private String country;
 
     @Column(name = "date_of_birth")
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @OneToMany(mappedBy = "actor",
     cascade = CascadeType.ALL,
     orphanRemoval = true)
-    private List<ActorMovieModel>  movies = new ArrayList<>();
+    private List<ActorMovieModel>  actorMovieList = new ArrayList<>();
 
-    public ActorModel(int id, String name, String country, Date dateOfBirth) {
+    public ActorModel(int id, String name, String country, LocalDate dateOfBirth) {
         this.id = id;
         this.name = name;
         this.country = country;
         this.dateOfBirth = dateOfBirth;
     }
 
-    public ActorModel(String name, String country, Date dateOfBirth) {
+    public ActorModel(String name, String country, LocalDate dateOfBirth) {
         this.name = name;
         this.country = country;
         this.dateOfBirth = dateOfBirth;
@@ -69,12 +71,36 @@ public class ActorModel {
         return this;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public ActorModel setDateOfBirth(Date dateOfBirth) {
+    public ActorModel setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
         return this;
     }
+
+    public List<ActorMovieModel> getActorMovieList() {
+        return actorMovieList;
+    }
+
+    public ActorModel setActorMovieList(List<ActorMovieModel> actorMovieList) {
+        this.actorMovieList = actorMovieList;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "ActorModel{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", country='" + country + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                '}';
+    }
+
+    public void addActor(ActorMovieModel actorMovie){
+        actorMovieList.add(actorMovie);
+    }
+
 }
