@@ -1,4 +1,4 @@
-package model.controller;
+package controller;
 
 import model.dao.Generic;
 import model.dto.ActorModel;

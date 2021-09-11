@@ -1,17 +1,11 @@
-import model.controller.ActorMovieServices;
-import model.controller.ActorServices;
-import model.controller.MovieServices;
-import model.dao.Configuration;
+import controller.ActorMovieServices;
+import controller.ActorServices;
+import controller.MovieServices;
 import model.dto.ActorModel;
-import model.dto.ActorMovieModel;
 import model.dto.MovieModel;
-import org.hibernate.Session;
 
-import java.sql.Date;
 import java.time.Duration;
 import java.time.LocalDate;
-
-import static java.util.Calendar.DECEMBER;
 
 public class Main {
     public static void main(String[] args) {
