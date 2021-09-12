@@ -1,50 +1,35 @@
-import controller.ActorMovieServices;
-import controller.ActorServices;
-import controller.MovieServices;
-import model.dto.ActorModel;
-import model.dto.MovieModel;
+import controller.*;
+import model.dto.*;
+import org.hibernate.type.DurationType;
+import view.ui.UserUi;
 
+import java.sql.Time;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-
-//        ActorServices actorServices = new ActorServices();
-//        actorServices.addActor(new ActorModel(
-//                        "Jake Gyllenhaal",
-//                        "United States Of America", LocalDate.of(1980, 12, 19)
-//                )
-//        );
-//
-//
-//        MovieServices movieServices = new MovieServices();
-//        movieServices.addMovie(new MovieModel(
-//                "The Guilty",
-//                2021,
-//                "Mystery",
-//                Duration.ofHours(1).plusMinutes(30)));
+        UserUi.logIn();
 
 
-        ActorModel actor = new ActorModel(
-                "Angelina Jolie",
-                "United States Of America",
-                LocalDate.of(1975, 6, 4)
-        );
-        MovieModel movie = new MovieModel(
-                "Mr&MrsSmith",
-                2005,
-                "Action",
-                Duration.ofHours(2).plusMinutes(6));
-
-        ActorServices actorServices = new ActorServices();
-        actorServices.addActor(actor);
-        MovieServices movieServices = new MovieServices();
-        movieServices.addMovie(movie);
-        ActorMovieServices actorMovieServices = new ActorMovieServices();
-//        actorMovieServices.addActorMovie(actor, movie);
 
 
     }
+//    public static void viewHomeMenu(){
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Enter 1 for Top Movies");
+//        System.out.println("Enter 2 for New Movies");
+//        System.out.println("Enter 3 to search an actor");
+//        System.out.println("Enter 4 to search a movie");
+//        String choice = scanner.next();
+//        switch(choice){
+//            case 1:{
+//                //getTopMovies
+//            }
+//        }
+//    }
+
+
 }

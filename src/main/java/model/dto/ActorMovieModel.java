@@ -22,6 +22,35 @@ public class ActorMovieModel {
         this.movie = movie;
     }
 
+    public ActorMovieModel(){}
+
+    public int getId() {
+        return id;
+    }
+
+    public ActorMovieModel setId(int id) {
+        this.id = id;
+        return this;
+    }
+
+    public ActorModel getActor() {
+        return actor;
+    }
+
+    public ActorMovieModel setActor(ActorModel actor) {
+        this.actor = actor;
+        return this;
+    }
+
+    public MovieModel getMovie() {
+        return movie;
+    }
+
+    public ActorMovieModel setMovie(MovieModel movie) {
+        this.movie = movie;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "ActorMovieModel{" +

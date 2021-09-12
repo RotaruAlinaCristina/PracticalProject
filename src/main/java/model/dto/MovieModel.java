@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "movie", uniqueConstraints={@UniqueConstraint(columnNames={"name"})})
+@Table(name = "movie", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
 public class MovieModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name ="name")
+    @Column(name = "name")
     private String name;
 
     @Column(name = "year")
@@ -23,7 +23,10 @@ public class MovieModel {
     private String genre;
 
     @Column(name = "duration")
-    private Duration duration;
+    private String duration;
+
+    @Column(name = "rating")
+    private double rating;
 
     @OneToMany(mappedBy = "movie",
             cascade = CascadeType.ALL,
@@ -40,7 +43,7 @@ public class MovieModel {
             orphanRemoval = true)
     private List<ActorMovieModel> movies = new ArrayList<>();
 
-    public MovieModel(String name, int year, String genre, Duration duration) {
+    public MovieModel(String name, int year, String genre, String duration) {
         this.name = name;
         this.year = year;
         this.genre = genre;
@@ -86,14 +89,26 @@ public class MovieModel {
         return this;
     }
 
-    public Duration getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public MovieModel setDuration(Duration duration) {
+    public MovieModel setDuration(String duration) {
         this.duration = duration;
         return this;
     }
+
+//    public double getRating() {
+//
+//    }
+
+//    public void setRating(int stars) {
+//
+//        int counter;
+//        rating = rating + stars;
+//        counter++;
+//
+//    }
 
     public List<ReviewModel> getReviews() {
         return reviews;
@@ -116,12 +131,9 @@ public class MovieModel {
 
     @Override
     public String toString() {
-        return "MovieModel{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", year=" + year +
-                ", genre='" + genre + '\'' +
-                ", duration=" + duration +
-                '}';
+        return name + ", "
+                + year + ", "
+                + genre + ", "
+                + duration;
     }
 }
