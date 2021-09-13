@@ -27,8 +27,11 @@ public class RatingModel {
         this.stars = stars;
         this.user = user;
     }
-    public RatingModel(int stars) {
+
+    public RatingModel(int stars, UserModel user, MovieModel movie) {
         this.stars = stars;
+        this.user = user;
+        this.movie = movie;
     }
 
     public RatingModel(){}

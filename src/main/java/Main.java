@@ -1,6 +1,7 @@
 import controller.*;
 import model.dto.*;
 import org.hibernate.type.DurationType;
+import view.ui.MovieUi;
 import view.ui.UserUi;
 
 import java.sql.Time;
@@ -11,25 +12,20 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        UserUi.logIn();
+
+        UserUi userUi = new UserUi();
+        userUi.logIn();
+
+//        MovieServices movieServices = new MovieServices();
+//        movieServices.searchMovieByName("Batman Begins");
+//        ActorServices actorServices = new ActorServices();
+//        actorServices.searchActorByName("Antonio Banderas");
 
 
 
 
     }
-//    public static void viewHomeMenu(){
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("Enter 1 for Top Movies");
-//        System.out.println("Enter 2 for New Movies");
-//        System.out.println("Enter 3 to search an actor");
-//        System.out.println("Enter 4 to search a movie");
-//        String choice = scanner.next();
-//        switch(choice){
-//            case 1:{
-//                //getTopMovies
-//            }
-//        }
-//    }
+
 
 
 }

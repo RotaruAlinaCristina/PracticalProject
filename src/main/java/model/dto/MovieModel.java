@@ -13,7 +13,7 @@ public class MovieModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "name")
+    @Column(name = "name", unique = true)
     private String name;
 
     @Column(name = "year")
@@ -26,7 +26,7 @@ public class MovieModel {
     private String duration;
 
     @Column(name = "rating")
-    private double rating;
+    private int rating;
 
     @OneToMany(mappedBy = "movie",
             cascade = CascadeType.ALL,
@@ -98,17 +98,14 @@ public class MovieModel {
         return this;
     }
 
-//    public double getRating() {
-//
-//    }
+    public int getRating() {
+        return rating;
+    }
 
-//    public void setRating(int stars) {
-//
-//        int counter;
-//        rating = rating + stars;
-//        counter++;
-//
-//    }
+    public MovieModel setRating(int rating) {
+        this.rating = rating;
+        return this;
+    }
 
     public List<ReviewModel> getReviews() {
         return reviews;
@@ -124,10 +121,9 @@ public class MovieModel {
     }
 
     public MovieModel setRatings(List<RatingModel> ratings) {
-        this.ratings = ratings;
+        this.ratings =ratings;
         return this;
     }
-
 
     @Override
     public String toString() {

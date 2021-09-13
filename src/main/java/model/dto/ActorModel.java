@@ -8,14 +8,14 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "actor", uniqueConstraints={@UniqueConstraint(columnNames={"name"})})
+@Table(name = "actor", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
 public class ActorModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
     @Column(name = "country")
@@ -25,9 +25,9 @@ public class ActorModel {
     private LocalDate dateOfBirth;
 
     @OneToMany(mappedBy = "actor",
-    cascade = CascadeType.ALL,
-    orphanRemoval = true)
-    private List<ActorMovieModel>  actorMovieList = new ArrayList<>();
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<ActorMovieModel> actorMovieList = new ArrayList<>();
 
     public ActorModel(int id, String name, String country, LocalDate dateOfBirth) {
         this.id = id;
@@ -42,7 +42,8 @@ public class ActorModel {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public ActorModel(){}
+    public ActorModel() {
+    }
 
     public int getId() {
         return id;
@@ -91,16 +92,11 @@ public class ActorModel {
 
     @Override
     public String toString() {
-        return "ActorModel{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", country='" + country + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                '}';
+        return name + ", " +
+                country + ", " +
+                dateOfBirth;
+
     }
 
-    public void addActor(ActorMovieModel actorMovie){
-        actorMovieList.add(actorMovie);
-    }
 
 }

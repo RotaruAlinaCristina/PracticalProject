@@ -17,10 +17,7 @@ public class UserServices {
         genericObject.add(user);
     }
 
-    public void addRating(int stars, MovieModel movie){
-        RatingServices ratingServices = new RatingServices();
-        ratingServices.addRating(new RatingModel(5));
-    }
+
 
 
 

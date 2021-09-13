@@ -6,15 +6,18 @@ import model.dto.UserDetailModel;
 import model.dto.UserModel;
 import org.hibernate.Session;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class UserUi {
 
-    public static void logIn() {
+    static UserModel loggedInUser = new UserModel();
+
+    public void logIn() {
 
         System.out.println("Enter 1 for registration");
-        System.out.println("Enter 2 for Log in, if you already an account");
+        System.out.println("Enter 2 for Log in, if you already have an account");
 
         Scanner scanner = new Scanner(System.in).useDelimiter("\n");
         int choice = scanner.nextInt();
@@ -41,30 +44,35 @@ public class UserUi {
                 break;
             }
             case 2: {
-                boolean var = false;
-                while (!var) {
+                boolean isDataValid = false;
+                while (!isDataValid) {
                     Scanner sc = new Scanner(System.in).useDelimiter("\n");
                     System.out.println("Enter e-mail");
                     String email = sc.next();
                     System.out.println("Enter password");
                     String password = sc.next();
-                    var = isUserDataValid(email, password);
+                    isDataValid = isUserDataValid(email, password);
+
+                    if(isDataValid){
+                        MovieUi movieUi = new MovieUi();
+                        movieUi.viewHomeMenu(loggedInUser);
+                    }
                 }
                 break;
             }
-
         }
-
     }
 
-    public static boolean isUserDataValid(String email, String password) {
+    public boolean isUserDataValid(String email, String password) {
         try (Session session = Configuration.getSessionFactory().openSession()) {
             List<UserModel> users = session.createQuery("SELECT u FROM UserModel u").getResultList();
             for (UserModel user : users) {
                 if (email.equals(user.getEmail()) && password.equals(user.getPassword())) {
+                    this.loggedInUser = user;
                     return true;
                 }
             }
+            System.out.println("Incorrect log in data, please try again");
         } catch (Exception e) {
             e.printStackTrace();
         }
